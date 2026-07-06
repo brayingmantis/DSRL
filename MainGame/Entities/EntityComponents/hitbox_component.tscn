@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmaww07nf60i6"]
+
+[ext_resource type="Script" uid="uid://bglxtyj0in6c4" path="res://MainGame/Entities/EntityComponents/hitbox_component.gd" id="1_qu0px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu0px"]
+size = Vector2(8, 8)
+
+[node name="HitboxComponent" type="Area2D" unique_id=1099885591]
+script = ExtResource("1_qu0px")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=919166429]
+shape = SubResource("RectangleShape2D_qu0px")
+debug_color = Color(0.3267916, 0.54741603, 0.29742858, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

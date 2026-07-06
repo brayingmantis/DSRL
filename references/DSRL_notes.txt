@@ -1,0 +1,38 @@
+https://models.spriters-resource.com/pc_computer/darksouls/?source=genre
+
+IDEAS:
+
+# stamina bar
+sprinting costs 1,
+dodging 2,
+blocking equivalent hp damage,
+heavy weapons cost more to swing (maybe 1 damage weapons cost 1 stamina to swing)
+
+# customisation
+player sprite/colour
+player name
+ui log location
+
+# name randomisation
+
+# game progression
+start in asylum level 2 or 3
+can go down for simple rogue experience, or up to escape
+get estus flask
+bonfire
+firelink shrine
+
+# asylum
+starting room should have locked door and key
+
+# Patches is a randomly recurring character
+he could be a merchant or a pest
+
+# soul memory
+viewable somehow
+
+BUGS:
+- long messages in the log get cut off
+- entity highlight remains beyond expected and behaves a little funky
+- throwing knife seemingly damages nearby enemies when targeting a nearby tile
+- dungeon floors are not being remembered correctly

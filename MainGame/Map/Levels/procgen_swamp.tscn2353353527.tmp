@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b2vj61nrunbjf"]
+
+[ext_resource type="Script" uid="uid://bn7q3nqqt5ird" path="res://MainGame/Map/ProcGen/procgen_swamp.gd" id="1_0fj7i"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="1_tu8xj"]
+[ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tile_set_1.tres" id="2_f4yll"]
+[ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_f4yll"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0fj7i"]
+seed = 1
+frequency = 0.0467
+fractal_lacunarity = 1.315
+fractal_gain = 1.88
+fractal_weighted_strength = 0.24
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c7wlo"]
+noise = SubResource("FastNoiseLite_0fj7i")
+
+[node name="procgen_swamp" type="Node2D" unique_id=11734514]
+script = ExtResource("1_0fj7i")
+noise_height_texture = SubResource("NoiseTexture2D_c7wlo")
+
+[node name="TileMapLayer_ground" type="TileMapLayer" parent="." unique_id=1724781922]
+modulate = Color(0.502277, 0.4344839, 0.33942395, 1)
+tile_set = ExtResource("2_f4yll")
+
+[node name="TileMapLayer_poison" type="TileMapLayer" parent="." unique_id=1741953307]
+modulate = Color(0.36078432, 0.2509804, 0.5058824, 1)
+tile_set = ExtResource("2_f4yll")
+
+[node name="TileMapLayer_web" type="TileMapLayer" parent="." unique_id=902670459]
+modulate = Color(0.7839568, 0.82203025, 0.71666974, 1)
+tile_set = ExtResource("2_f4yll")
+
+[node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_f4yll")]
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=1389230617]
+ignore_rotation = false
+zoom = Vector2(4, 4)
+script = ExtResource("1_tu8xj")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxa8g8iv6o1l6"]
+
+[ext_resource type="Script" uid="uid://cjveem53pu2ht" path="res://MainGame/Entities/EntityComponents/hp_component.gd" id="1_d76j8"]
+
+[node name="HPComponent" type="Node2D" unique_id=136519388]
+script = ExtResource("1_d76j8")

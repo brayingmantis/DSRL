@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cvgud0dj583h8"]
+
+[ext_resource type="Texture2D" uid="uid://drfpipxbsb1oe" path="res://assets/Images/monochrome-transparent_packed.png" id="2_amhqt"]
+[ext_resource type="Script" uid="uid://doluho1h2nddi" path="res://temp/player.gd" id="3_amhqt"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://src/MainGame/game_camera.gd" id="3_gs8ee"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://temp/enemy.tscn" id="4_gs8ee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bob6j"]
+atlas = ExtResource("2_amhqt")
+region = Rect2(400, 0, 16, 16)
+
+[node name="World" type="Node2D" unique_id=1069682089]
+
+[node name="Player" type="Sprite2D" parent="." unique_id=361541918]
+texture = SubResource("AtlasTexture_bob6j")
+centered = false
+script = ExtResource("3_amhqt")
+
+[node name="Enemy" parent="." unique_id=877543030 instance=ExtResource("4_gs8ee")]
+position = Vector2(-31, -29)
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=779811973]
+zoom = Vector2(5, 5)
+script = ExtResource("3_gs8ee")

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c5cm168ocbirf"]
+
+[ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
+[ext_resource type="PackedScene" uid="uid://bb8lc3ticltg4" path="res://MainGame/Map/Levels/firelink.tscn" id="2_8q0bg"]
+[ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="4_1f51a"]
+[ext_resource type="Script" uid="uid://bgue03eajwd3g" path="res://MainGame/Entities/EntityComponents/ai_resource.gd" id="5_8q0bg"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
+
+[sub_resource type="Resource" id="Resource_ussfm"]
+script = ExtResource("5_8q0bg")
+metadata/_custom_type_script = "uid://bgue03eajwd3g"
+
+[node name="Game" type="Node2D" unique_id=975282636]
+script = ExtResource("1_wfbjd")
+
+[node name="Level" parent="." unique_id=1069682089 instance=ExtResource("2_8q0bg")]
+
+[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("4_1f51a")]
+position = Vector2(-96, -80)
+resource = SubResource("Resource_ussfm")
+
+[node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
+position = Vector2(-64, -16)
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=56942047]
+ignore_rotation = false
+zoom = Vector2(4, 4)
+process_callback = 0
+script = ExtResource("5_qs2bn")
+
+[connection signal="movement_action" from="Player" to="Enemy" method="_on_player_movement_action"]
+[connection signal="movement_action" from="Player" to="GameCamera" method="_on_player_movement_action"]

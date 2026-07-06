@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cvgud0dj583h8"]
+
+[ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://temp/player.tscn" id="3_amhqt"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://src/MainGame/game_camera.gd" id="3_gs8ee"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://temp/enemy.tscn" id="4_gs8ee"]
+
+[node name="World" type="Node2D" unique_id=1069682089]
+
+[node name="Player" parent="." unique_id=1512230342 instance=ExtResource("3_amhqt")]
+position = Vector2(-48, 0)
+
+[node name="Enemy" parent="." unique_id=877543030 instance=ExtResource("4_gs8ee")]
+position = Vector2(48, 0)
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=779811973]
+zoom = Vector2(4, 4)
+script = ExtResource("3_gs8ee")

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c5cm168ocbirf"]
+
+[ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
+[ext_resource type="PackedScene" uid="uid://bb8lc3ticltg4" path="res://MainGame/Map/Levels/firelink.tscn" id="2_8q0bg"]
+[ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="4_1f51a"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
+
+[node name="Game" type="Node2D" unique_id=975282636]
+script = ExtResource("1_wfbjd")
+
+[node name="firelink" parent="." unique_id=1069682089 instance=ExtResource("2_8q0bg")]
+position = Vector2(-8, 8)
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=56942047]
+ignore_rotation = false
+zoom = Vector2(4, 4)
+script = ExtResource("5_qs2bn")
+
+[node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
+position = Vector2(-16, -32)
+
+[node name="Enemy4" parent="." unique_id=1566240223 instance=ExtResource("4_1f51a")]
+position = Vector2(-32, -48)
+
+[node name="Enemy5" parent="." unique_id=1873812521 instance=ExtResource("4_1f51a")]
+position = Vector2(-32, -32)
+
+[node name="Enemy2" parent="." unique_id=894121113 instance=ExtResource("4_1f51a")]
+position = Vector2(-32, -16)
+
+[node name="Enemy3" parent="." unique_id=729492885 instance=ExtResource("4_1f51a")]
+position = Vector2(-16, -16)
+
+[node name="Enemy6" parent="." unique_id=2095984631 instance=ExtResource("4_1f51a")]
+position = Vector2(0, -16)
+
+[node name="Enemy7" parent="." unique_id=1551782395 instance=ExtResource("4_1f51a")]
+position = Vector2(0, -32)
+
+[node name="Enemy8" parent="." unique_id=1287735655 instance=ExtResource("4_1f51a")]
+position = Vector2(0, -48)
+
+[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("4_1f51a")]
+position = Vector2(-16, -48)
+
+[node name="Enemy9" parent="." unique_id=2043836822 instance=ExtResource("4_1f51a")]
+position = Vector2(16, -32)
+
+[node name="Enemy10" parent="." unique_id=1597514362 instance=ExtResource("4_1f51a")]
+position = Vector2(16, -48)
+
+[node name="Enemy11" parent="." unique_id=1380059605 instance=ExtResource("4_1f51a")]
+position = Vector2(16, -64)
+
+[node name="Enemy12" parent="." unique_id=752373256 instance=ExtResource("4_1f51a")]
+position = Vector2(0, -64)
+
+[node name="Enemy13" parent="." unique_id=1243236019 instance=ExtResource("4_1f51a")]
+position = Vector2(0, -64)
+
+[connection signal="movement_action" from="Player" to="GameCamera" method="_on_player_movement_action"]
+[connection signal="movement_action" from="Player" to="Enemy" method="_on_player_movement_action"]

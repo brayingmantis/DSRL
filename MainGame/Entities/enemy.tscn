@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b6sfto6gdkvjj"]
+
+[ext_resource type="Texture2D" uid="uid://drfpipxbsb1oe" path="res://assets/images/tileset_main.png" id="1_8i2b4"]
+[ext_resource type="Script" uid="uid://8fylm5h6phxa" path="res://MainGame/Entities/enemy.gd" id="1_wis1m"]
+[ext_resource type="PackedScene" uid="uid://dxa8g8iv6o1l6" path="res://MainGame/Entities/EntityComponents/hp_component.tscn" id="2_6eh6g"]
+[ext_resource type="PackedScene" uid="uid://bmaww07nf60i6" path="res://MainGame/Entities/EntityComponents/hitbox_component.tscn" id="4_praa0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i2b4"]
+atlas = ExtResource("1_8i2b4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_praa0"]
+size = Vector2(8, 8)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1068328151]
+position = Vector2(8, 8)
+script = ExtResource("1_wis1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1624859924]
+position = Vector2(-8, -8)
+texture = SubResource("AtlasTexture_8i2b4")
+centered = false
+region_enabled = true
+region_rect = Rect2(448, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609308230]
+shape = SubResource("RectangleShape2D_praa0")
+
+[node name="HPComponent" parent="." unique_id=136519388 instance=ExtResource("2_6eh6g")]
+max_hp = 3
+
+[node name="HitboxComponent" parent="." unique_id=1099885591 node_paths=PackedStringArray("hp_component") instance=ExtResource("4_praa0")]
+hp_component = NodePath("../HPComponent")
+
+[connection signal="death" from="HPComponent" to="." method="_on_hp_component_death"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

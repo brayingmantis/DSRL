@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b2vj61nrunbjf"]
+
+[ext_resource type="Script" uid="uid://bn7q3nqqt5ird" path="res://MainGame/Map/Levels/swamp_procgen.gd" id="1_4u0bu"]
+[ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="2_q1f80"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6x4bl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6x4bl"]
+noise = SubResource("FastNoiseLite_6x4bl")
+
+[node name="swamp_procgen" type="Node2D" unique_id=11734514]
+script = ExtResource("1_4u0bu")
+noise_height_texture = SubResource("NoiseTexture2D_6x4bl")
+
+[node name="TileMapLayer_ground" type="TileMapLayer" parent="." unique_id=1724781922]
+modulate = Color(0.502277, 0.4344839, 0.33942395, 1)
+tile_set = ExtResource("2_q1f80")
+
+[node name="TileMapLayer_poison" type="TileMapLayer" parent="." unique_id=1741953307]
+tile_set = ExtResource("2_q1f80")

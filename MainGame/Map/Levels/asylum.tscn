@@ -1,0 +1,50 @@
+[gd_scene format=4 uid="uid://bkmknq6m6a84x"]
+
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="1_txxkf"]
+[ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="2_txxkf"]
+
+[sub_resource type="Gradient" id="Gradient_8q0bg"]
+offsets = PackedFloat32Array(0, 0.001607717, 0.20578778, 0.8006431, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.86024094, 0.86024094, 0.86024094, 1, 0.237939, 0.237939, 0.237939, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvgh6"]
+gradient = SubResource("Gradient_8q0bg")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.06)
+
+[node name="firelink" type="Node2D" unique_id=1069682089]
+script = ExtResource("1_txxkf")
+
+[node name="BGLayer" type="TileMapLayer" parent="." unique_id=1025272849]
+light_mask = 2
+tile_map_data = PackedByteArray("AAD8//v/AAAMABQAAAD9//v/AAAMABQAAAD+//v/AAAMABQAAAD///v/AAAMABQAAAAAAPv/AAAMABQAAAABAPv/AAAMABQAAAABAPz/AAAMABQAAAABAP3/AAAMABQAAAABAP7/AAAMABQAAAAAAP3/AAAMABQAAAAAAPz/AAAMABQAAAD///z/AAAMABQAAAD///3/AAAMABQAAAAAAP7/AAAMABQAAAD///7/AAAMABQAAAD+//7/AAAMABQAAAD9//7/AAAMABQAAAD9//3/AAAMABQAAAD8//3/AAAMABQAAAD8//z/AAAMABQAAAD9//z/AAAMABQAAAD+//z/AAAMABQAAAD+//3/AAAMABQAAAD8//7/AAAMABQAAAA=")
+tile_set = ExtResource("2_txxkf")
+
+[node name="GroundLayer" type="TileMapLayer" parent="." unique_id=741005357]
+light_mask = 2
+tile_map_data = PackedByteArray("AAABAP3/AAAIAAAAAAA=")
+tile_set = ExtResource("2_txxkf")
+
+[node name="DecorLayer" type="TileMapLayer" parent="." unique_id=178017560]
+light_mask = 2
+tile_map_data = PackedByteArray("AAD+//7/AAATAAEAADD///3/AAAOAAoAAAD6//3/AAADAAYAAAA=")
+tile_set = ExtResource("2_txxkf")
+
+[node name="WallsLayer" type="TileMapLayer" parent="." unique_id=1966925116]
+light_mask = 2
+tile_map_data = PackedByteArray("AAD9////AAABABIAAAD+////AAABABIAAAD/////AAABABIAAAAAAP//AAABABIAAAABAP//AAABABIAAAACAP7/AAABABIAAEACAP3/AAABABIAAEACAPz/AAABABIAAEACAPv/AAABABIAAEACAP//AAACABIAAAACAPr/AAACABIAAGABAPr/AAABABIAADAAAPr/AAABABIAADD///r/AAABABIAADD+//r/AAABABIAADD9//r/AAABABIAADD8//r/AAABABIAADD7//r/AAACABIAADD7//v/AAABABIAAFD7//z/AAABABIAAFD7//7/AAABABIAAFD7////AAACABIAAFD8////AAABABIAAAD6//7/AAABABIAAAD5//7/AAABABIAAAD6//z/AAABABIAADD5//z/AAABABIAADD4//z/AAABABIAADD4//7/AAABABIAAAD3//3/AAABABIAAFD3//z/AAACABIAADD3//7/AAACABIAAFA=")
+tile_set = ExtResource("2_txxkf")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=651184127]
+color = Color(0.41470346, 0.41470408, 0.4147039, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=64497707]
+position = Vector2(-16, -32)
+color = Color(0.837407, 0.56530726, 0.2392289, 1)
+energy = 0.8
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_yvgh6")
+offset = Vector2(8, 8)
+texture_scale = 1.5
