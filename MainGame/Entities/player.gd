@@ -3,6 +3,8 @@ extends CharacterBody2D
 var TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
 var TILE_SIZE_FLOAT: float = 16
 
+@export var HPBar: HPBar
+
 #@onready var max_hp = $HPComponent.max_hp
 #@onready var hp = $HPComponent.hp
 
@@ -26,6 +28,7 @@ signal movement_action
 
 func _ready() -> void:
 	InputStack.register_input_callback(player_input) # input
+	HPBar._setup_hp_bar(hp_component.hp) # hp bar
 	$PlayerSprite.modulate = Color.WHITE # colour
 	#hp = 10 # called in HPComponent
 
@@ -121,24 +124,13 @@ func player_input(event: InputEvent) -> void:
 		hurtbox_component.animation_player.play("melee_downright")
 		print("Melee attacked down-right to hit ", down_right_ray.get_collider())
 
-#func _on_hitbox_component_area_entered(area: Area2D) -> void:
-	##hp_component.damage(FighterComponent.new()) # take damage CHANGE SOON
-	#ActionsComponent.new()._melee_action(area) # deal damage
-
-
-
-func game_quit() -> void:
-	get_tree().quit()
-
-#func _melee_action(area: Area2D) -> void: NOW IN ACTIONS_COMPONENT
-	#if area.has_method("damage"): 
-		#var attack = FighterComponent.new()
-		#var weapon_damage = 1 # change later
-		#attack.attack_damage = 0 + weapon_damage
-		##attack.knockback = 0 # + weapon knockback
-		#attack.attack_pos = global_position
-		#area.damage(attack) # deal damage
+# hp bar
+func _on_hp_component_hp_changed(current: float, max: float) -> void:
+	HPBar.change_value(current)
 
 func _on_hp_component_death() -> void:
 	print("YOU DIED")
 	queue_free()
+
+func game_quit() -> void:
+	get_tree().quit()

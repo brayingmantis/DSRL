@@ -8,14 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://cwtsbl4roylsu" path="res://MainGame/Entities/EntityComponents/hurtbox_component.tscn" id="4_a7yko"]
 [ext_resource type="Script" uid="uid://621csot08ok6" path="res://MainGame/Entities/Raycast.gd" id="6_ndvs6"]
 [ext_resource type="Script" uid="uid://mkm6n165mqf8" path="res://MainGame/Entities/EntityComponents/actions_component.gd" id="7_dq3ll"]
+[ext_resource type="PackedScene" uid="uid://dfebhpfa7fkwe" path="res://MainGame/Entities/EntityComponents/hp_bar.tscn" id="9_s40j1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xxio"]
 atlas = ExtResource("2_n6jja")
 region = Rect2(400, 0, 16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=90838761]
+[node name="Player" type="CharacterBody2D" unique_id=90838761 node_paths=PackedStringArray("HPBar")]
 position = Vector2(8, 8)
 script = ExtResource("1_8m2vk")
+HPBar = NodePath("HPBar")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=829016335]
 texture = SubResource("AtlasTexture_6xxio")
@@ -76,7 +78,12 @@ hit_from_inside = true
 [node name="ActionsComponent" type="Node" parent="." unique_id=1554444959]
 script = ExtResource("7_dq3ll")
 
+[node name="HPBar" parent="." unique_id=1366667275 instance=ExtResource("9_s40j1")]
+offset_top = 7.999999
+offset_bottom = 18.0
+
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
 [connection signal="body_shape_entered" from="HitboxComponent" to="RayCastComponent" method="_on_hitbox_component_body_shape_entered"]
 [connection signal="area_entered" from="HurtboxComponent" to="HitboxComponent" method="_on_hurtbox_component_area_entered"]
 [connection signal="death" from="HPComponent" to="." method="_on_hp_component_death"]
+[connection signal="hp_changed" from="HPComponent" to="." method="_on_hp_component_hp_changed"]
