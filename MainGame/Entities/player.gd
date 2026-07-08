@@ -24,7 +24,7 @@ var TILE_SIZE_FLOAT: float = 16
 var sprite_pos_tween: Tween # for smooth animation
 
 signal movement_action
-#signal melee_action
+signal melee_action
 
 func _ready() -> void:
 	InputStack.register_input_callback(player_input) # input
@@ -102,27 +102,35 @@ func player_input(event: InputEvent) -> void:
 	if event.is_action("move_up") and up_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_up")
 		print("Melee attacked up to hit ", up_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_down") and down_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_down")
 		print("Melee attacked down to hit ", down_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_left") and left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_left")
 		print("Melee attacked left to hit ", left_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_right") and right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_right")
 		print("Melee attacked right to hit ", right_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_upleft") and up_left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_upleft")
 		print("Melee attacked up-left to hit ", up_left_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_upright") and up_right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_upright")
 		print("Melee attacked up-right to hit ", up_right_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_downleft") and down_left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_downleft")
 		print("Melee attacked down-left to hit ", down_left_ray.get_collider())
+		emit_signal("melee_action")
 	if event.is_action("move_downright") and down_right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_downright")
 		print("Melee attacked down-right to hit ", down_right_ray.get_collider())
+		emit_signal("melee_action")
 
 # hp bar
 func _on_hp_component_hp_changed(current: float, max: float) -> void:

@@ -13,8 +13,10 @@ func _ready() -> void:
 	HPBar._setup_hp_bar(hp_component.hp)
 
 func _on_player_movement_action() -> void:
-		#global_position += Vector2.UP * TILE_SIZE
-		pass
+	_on_player_action()
+
+func _on_player_action() -> void:
+	global_position += Vector2.UP * TILE_SIZE
 
 func _on_hp_component_hp_changed(current: float, max: float) -> void:
 	if not HPBar:

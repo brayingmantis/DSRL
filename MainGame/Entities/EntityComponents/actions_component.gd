@@ -1,10 +1,10 @@
 class_name ActionsComponent
 extends Node
 
-signal melee_action
+#signal melee_action
 
-func _ready() -> void:
-	melee_action.connect(_melee_action)
+#func _ready() -> void:
+	#melee_action.connect(_melee_action)
 
 func _melee_action(area: Area2D) -> void:
 	if area is HitboxComponent: 
@@ -15,4 +15,4 @@ func _melee_action(area: Area2D) -> void:
 		#attack.attack_pos = global_position
 		area.damage(attack) # deal damage
 		
-		emit_signal("melee_action")
+		#emit_signal("melee_action")

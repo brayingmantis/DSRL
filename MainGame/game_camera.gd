@@ -7,8 +7,8 @@ var following_player: bool = true
 var cam_pos_tween: Tween # for smooth animation
 
 func _ready() -> void:
-	zoom.x = 4
-	zoom.y = 4
+	zoom.x = 10
+	zoom.y = 10
 	position = player.position
 
 func _input(event: InputEvent) -> void:

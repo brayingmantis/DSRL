@@ -26,8 +26,8 @@ func _ready() -> void:
 func generate_world():
 	noise.set_seed(randi_range(0, 1000))
 	print("Swamp seed: ", noise.seed)
-	for x in range(-width/2, width/2): #would just be width and height in the brackets respectively,
-		for y in range(-height/2, height/2): #(cont.) but that generates everything at (0,0), which is top-left.
+	for x in range(-width/2, width/2): # would just be width and height in the brackets respectively,
+		for y in range(-height/2, height/2): # (cont.) but that generates everything at (0,0), which is top-left.
 			var noise_val: float = noise.get_noise_2d(x,y)
 			if noise_val >= 0.0:
 				tilemap_ground.set_cell(Vector2(x, y), source_id, ground_atlas)
