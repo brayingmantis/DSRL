@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bb8lc3ticltg4"]
 
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="2_yvgh6"]
 [ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="4_ou3mt"]
 
 [sub_resource type="Gradient" id="Gradient_8q0bg"]
@@ -41,3 +42,9 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_yvgh6")
 offset = Vector2(8, 8)
 texture_scale = 2.7
+
+[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("2_yvgh6")]
+position = Vector2(8, -24)
+
+[node name="Enemy2" parent="." unique_id=1873266301 instance=ExtResource("2_yvgh6")]
+position = Vector2(-8, -56)

@@ -1,25 +1,35 @@
 extends Node2D
-class_name LevelController
+#class_name LevelController
 
 const FIRELINK_SCENE_PATH: String = "res://MainGame/Map/Levels/firelink.tscn"
 const SWAMP_SCENE_PATH: String = "res://MainGame/Map/Levels/swamp_procgen.tscn"
 
+var current_level: Node = null
+
+var is_in_swamp = false # temp variable
+
 func _ready() -> void:
 	_load_firelink()
 
+func _load_level(path: String) -> void:
+	if current_level:
+		current_level.queue_free()
+	
+	ResourceLoader.load_threaded_request(path)
+	var scene = ResourceLoader.load_threaded_get(path)
+	current_level = scene.instantiate()
+	add_child(current_level)
+
 func _load_firelink() -> void:
-	ResourceLoader.load_threaded_request(FIRELINK_SCENE_PATH)
-	var firelink = ResourceLoader.load_threaded_get(FIRELINK_SCENE_PATH)
-	var load_firelink = firelink.instantiate()
-	add_child(load_firelink)
+	_load_level(FIRELINK_SCENE_PATH)
 
 func _load_swamp() -> void:
-	ResourceLoader.load_threaded_request(SWAMP_SCENE_PATH)
-	var swamp = ResourceLoader.load_threaded_get(SWAMP_SCENE_PATH)
-	var load_swamp = swamp.instantiate()
-	add_child(load_swamp)
+	_load_level(SWAMP_SCENE_PATH)
 
-
-func _on_stairs_down_stairs_entered() -> void:
-	# remove previous scene
-	_load_swamp()
+func _on_stairs_down_stairs_entered() -> void: # quick way to move between two levels
+	if is_in_swamp:
+		_load_firelink()
+		is_in_swamp = false
+	else:
+		_load_swamp()
+		is_in_swamp = true

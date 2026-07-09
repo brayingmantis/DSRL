@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
 [ext_resource type="Script" uid="uid://ct54uqnnleyjk" path="res://MainGame/level_controller.gd" id="2_wfbjd"]
 [ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
-[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="4_1f51a"]
 [ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
 [ext_resource type="PackedScene" uid="uid://cl5t5xx10kgdi" path="res://MainGame/Entities/stairs_down.tscn" id="6_8q0bg"]
 
@@ -22,15 +21,8 @@ script = ExtResource("5_qs2bn")
 [node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
 position = Vector2(0, 0)
 
-[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("4_1f51a")]
-position = Vector2(0, -16)
-
-[node name="Enemy5" parent="." unique_id=1873812521 instance=ExtResource("4_1f51a")]
-position = Vector2(-16, 0)
-
 [node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("6_8q0bg")]
 position = Vector2(-96, 0)
 
 [connection signal="movement_action" from="Player" to="GameCamera" method="_on_player_movement_action"]
-[connection signal="movement_action" from="Player" to="Enemy" method="_on_player_movement_action"]
 [connection signal="stairs_entered" from="StairsDown" to="LevelController" method="_on_stairs_down_stairs_entered"]

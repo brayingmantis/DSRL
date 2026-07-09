@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bn7q3nqqt5ird" path="res://MainGame/Map/Levels/swamp_procgen.gd" id="1_4u0bu"]
 [ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="2_q1f80"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="3_cyhj4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6x4bl"]
 frequency = 0.0333
@@ -21,3 +22,5 @@ tile_set = ExtResource("2_q1f80")
 
 [node name="TileMapLayer_poison" type="TileMapLayer" parent="." unique_id=1741953307]
 tile_set = ExtResource("2_q1f80")
+
+[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("3_cyhj4")]
