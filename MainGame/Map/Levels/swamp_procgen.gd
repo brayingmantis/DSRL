@@ -5,26 +5,38 @@ class_name swamp
 
 @export var noise_height_texture: NoiseTexture2D
 
+@onready var tilemap_ground = $TileMapLayer_ground
+@onready var tilemap_poison = $TileMapLayer_poison
+
 var noise: Noise
 var width: int = 60
 var height: int = 120
 
-@onready var tilemap_ground = $TileMapLayer_ground
-@onready var tilemap_poison = $TileMapLayer_poison
-
-var source_id = 0 
+var source_id = 0
 var ground_atlas = Vector2i(7, 0)
 var poison_atlas = Vector2i(8, 2)
 var web_atlas = Vector2i(2, 15)
 
+@onready var seed = Game.new().seed
+
+signal stairs_down_entered
+signal stairs_up_entered
+
+func _on_stairs_down_stairs_entered() -> void:
+	stairs_down_entered.emit()
+
+func _on_stairs_up_stairs_entered() -> void:
+	stairs_up_entered.emit()
+
 func _ready() -> void:
 	noise = noise_height_texture.noise
 	generate_world()
-	
+
 	# if stairs up/down signal received, map to the appropriate area
 
 func generate_world():
-	noise.set_seed(randi_range(0, 1000))
+	#noise.set_seed(randi_range(0, 1000))
+	noise.set_seed(seed)
 	print("Swamp seed: ", noise.seed)
 	for x in range(-width/2, width/2): # would just be width and height in the brackets respectively,
 		for y in range(-height/2, height/2): # (cont.) but that generates everything at (0,0), which is top-left.

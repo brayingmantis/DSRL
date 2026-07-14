@@ -35,9 +35,9 @@ hp_component = NodePath("../HPComponent")
 
 [node name="HPBar" parent="." unique_id=1366667275 instance=ExtResource("5_86s22")]
 offset_left = -6.0
-offset_top = 6.999999
+offset_top = 8.000001
 offset_right = 53.999992
-offset_bottom = 17.000004
+offset_bottom = 13.000009
 
 [connection signal="death" from="HPComponent" to="." method="_on_hp_component_death"]
 [connection signal="hp_changed" from="HPComponent" to="." method="_on_hp_component_hp_changed"]

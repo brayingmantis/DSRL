@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bn7q3nqqt5ird" path="res://MainGame/Map/Levels/swamp_procgen.gd" id="1_4u0bu"]
 [ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="2_q1f80"]
 [ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="3_cyhj4"]
+[ext_resource type="PackedScene" uid="uid://c7f2xpklgarqm" path="res://MainGame/Entities/stairs_up.tscn" id="4_q1f80"]
+[ext_resource type="PackedScene" uid="uid://cl5t5xx10kgdi" path="res://MainGame/Entities/stairs_down.tscn" id="5_snvst"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6x4bl"]
 frequency = 0.0333
@@ -24,3 +26,12 @@ tile_set = ExtResource("2_q1f80")
 tile_set = ExtResource("2_q1f80")
 
 [node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("3_cyhj4")]
+
+[node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("5_snvst")]
+position = Vector2(-8, 8)
+
+[node name="StairsUp" parent="." unique_id=1169410107 instance=ExtResource("4_q1f80")]
+position = Vector2(-88, -24)
+
+[connection signal="stairs_entered" from="StairsDown" to="." method="_on_stairs_down_stairs_entered"]
+[connection signal="stairs_entered" from="StairsUp" to="." method="_on_stairs_up_stairs_entered"]

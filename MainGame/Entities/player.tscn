@@ -21,10 +21,10 @@ HPBar = NodePath("PlayerSprite/HPBar")
 texture = SubResource("AtlasTexture_6xxio")
 
 [node name="HPBar" parent="PlayerSprite" unique_id=1366667275 instance=ExtResource("9_s40j1")]
-offset_left = -7.0
-offset_top = 6.999999
-offset_right = 62.999992
-offset_bottom = 17.0
+offset_left = -6.0
+offset_top = 8.000001
+offset_right = 53.999992
+offset_bottom = 12.999994
 
 [node name="HitboxComponent" parent="." unique_id=1099885591 node_paths=PackedStringArray("hp_component") instance=ExtResource("3_2moy3")]
 hp_component = NodePath("../HPComponent")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c5cm168ocbirf"]
+
+[ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
+[ext_resource type="Script" uid="uid://ct54uqnnleyjk" path="res://MainGame/level_controller.gd" id="2_wfbjd"]
+[ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
+[ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
+
+[node name="Game" type="Node2D" unique_id=975282636]
+script = ExtResource("1_wfbjd")
+
+[node name="LevelController" type="Node2D" parent="." unique_id=1354798154]
+position = Vector2(-8, 8)
+script = ExtResource("2_wfbjd")
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=56942047]
+ignore_rotation = false
+zoom = Vector2(4, 4)
+script = ExtResource("5_qs2bn")
+
+[node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
+position = Vector2(0, 0)
+
+[connection signal="movement_action" from="Player" to="GameCamera" method="_on_player_movement_action"]

@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://cl5t5xx10kgdi"]
+[gd_scene format=3 uid="uid://c7f2xpklgarqm"]
 
-[ext_resource type="Script" uid="uid://cehifxfvaai8h" path="res://MainGame/Entities/stairs.gd" id="1_6kc2l"]
-[ext_resource type="Texture2D" uid="uid://drfpipxbsb1oe" path="res://assets/images/tileset_main.png" id="1_fm4nw"]
+[ext_resource type="Script" uid="uid://cehifxfvaai8h" path="res://MainGame/Entities/stairs.gd" id="1_pflgh"]
+[ext_resource type="Texture2D" uid="uid://drfpipxbsb1oe" path="res://assets/images/tileset_main.png" id="2_lfdx6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbrq"]
-atlas = ExtResource("1_fm4nw")
-region = Rect2(48, 96, 16, 16)
+atlas = ExtResource("2_lfdx6")
+region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kc2l"]
 size = Vector2(5.5, 5.5)
 
-[node name="StairsDown" type="Node2D" unique_id=1925872748]
-script = ExtResource("1_6kc2l")
+[node name="StairsUp" type="Node2D" unique_id=1925872748]
+script = ExtResource("1_pflgh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=192861333]
 texture = SubResource("AtlasTexture_ugbrq")
@@ -23,4 +23,3 @@ shape = SubResource("RectangleShape2D_6kc2l")
 debug_color = Color(0.78960043, 0.10136924, 0.8041491, 0.41960785)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

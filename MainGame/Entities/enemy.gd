@@ -15,8 +15,12 @@ func _ready() -> void:
 func _on_player_movement_action() -> void:
 	_on_player_action()
 
+func _on_player_melee_action() -> void:
+	_on_player_action()
+
 func _on_player_action() -> void:
-	global_position += Vector2.UP * TILE_SIZE
+	#global_position += Vector2.UP * TILE_SIZE
+	pass
 
 func _on_hp_component_hp_changed(current: float, max: float) -> void:
 	if not HPBar:

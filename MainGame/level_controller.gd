@@ -4,9 +4,9 @@ extends Node2D
 const FIRELINK_SCENE_PATH: String = "res://MainGame/Map/Levels/firelink.tscn"
 const SWAMP_SCENE_PATH: String = "res://MainGame/Map/Levels/swamp_procgen.tscn"
 
+enum Level { FIRELINK, SWAMP }
+var current_level_id: Level
 var current_level: Node = null
-
-var is_in_swamp = false # temp variable
 
 func _ready() -> void:
 	_load_firelink()
@@ -19,17 +19,31 @@ func _load_level(path: String) -> void:
 	var scene = ResourceLoader.load_threaded_get(path)
 	current_level = scene.instantiate()
 	add_child(current_level)
+	
+	if current_level.has_signal("stairs_down_entered"):
+		current_level.stairs_down_entered.connect(_on_stairs_down_entered)
+	if current_level.has_signal("stairs_up_entered"):
+		current_level.stairs_up_entered.connect(_on_stairs_up_entered)
 
 func _load_firelink() -> void:
 	_load_level(FIRELINK_SCENE_PATH)
+	current_level_id = Level.FIRELINK
 
 func _load_swamp() -> void:
 	_load_level(SWAMP_SCENE_PATH)
+	current_level_id = Level.SWAMP
 
-func _on_stairs_down_stairs_entered() -> void: # quick way to move between two levels
-	if is_in_swamp:
-		_load_firelink()
-		is_in_swamp = false
-	else:
-		_load_swamp()
-		is_in_swamp = true
+func _on_stairs_down_entered() -> void:
+	var is_on_stairs_down
+	match current_level_id:
+		Level.FIRELINK:
+			_load_swamp()
+		Level.SWAMP:
+			_load_swamp()
+
+func _on_stairs_up_entered() -> void: #
+	match current_level_id:
+		Level.FIRELINK:
+			print("Would move up")
+		Level.SWAMP:
+			_load_firelink()

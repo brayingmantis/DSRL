@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://bb8lc3ticltg4"]
 
-[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="2_yvgh6"]
+[ext_resource type="Script" uid="uid://bkmtmipveicc7" path="res://MainGame/Map/Levels/firelink.gd" id="1_jo6yg"]
+[ext_resource type="PackedScene" uid="uid://cl5t5xx10kgdi" path="res://MainGame/Entities/stairs_down.tscn" id="4_i7bhq"]
 [ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="4_ou3mt"]
+[ext_resource type="PackedScene" uid="uid://c7f2xpklgarqm" path="res://MainGame/Entities/stairs_up.tscn" id="5_anujb"]
 
 [sub_resource type="Gradient" id="Gradient_8q0bg"]
 offsets = PackedFloat32Array(0, 0.001607717, 0.20578778, 0.8006431, 1)
@@ -15,6 +17,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.06)
 
 [node name="firelink" type="Node2D" unique_id=1069682089]
+script = ExtResource("1_jo6yg")
 
 [node name="BGLayer" type="TileMapLayer" parent="." unique_id=1025272849]
 light_mask = 2
@@ -43,8 +46,11 @@ texture = SubResource("GradientTexture2D_yvgh6")
 offset = Vector2(8, 8)
 texture_scale = 2.7
 
-[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("2_yvgh6")]
-position = Vector2(8, -24)
+[node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("4_i7bhq")]
+position = Vector2(-88, -8)
 
-[node name="Enemy2" parent="." unique_id=1873266301 instance=ExtResource("2_yvgh6")]
-position = Vector2(-8, -56)
+[node name="StairsUp" parent="." unique_id=839518503 instance=ExtResource("5_anujb")]
+position = Vector2(-88, -40)
+
+[connection signal="stairs_entered" from="StairsDown" to="." method="_on_stairs_down_stairs_entered"]
+[connection signal="stairs_entered" from="StairsUp" to="." method="_on_stairs_up_stairs_entered"]

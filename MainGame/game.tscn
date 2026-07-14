@@ -3,8 +3,26 @@
 [ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
 [ext_resource type="Script" uid="uid://ct54uqnnleyjk" path="res://MainGame/level_controller.gd" id="2_wfbjd"]
 [ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="5_8q0bg"]
 [ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
-[ext_resource type="PackedScene" uid="uid://cl5t5xx10kgdi" path="res://MainGame/Entities/stairs_down.tscn" id="6_8q0bg"]
+[ext_resource type="Shader" uid="uid://6fbxbrer85bs" path="res://assets/shaders/crt_shader.gdshader" id="5_wfbjd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cht7c"]
+shader = ExtResource("5_wfbjd")
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/scan_line_amount = 0.4490000213275
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.0050000002375
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.158000007505
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.402000019095
+shader_parameter/vignette_intensity = 0.3010000142975
+shader_parameter/aberation_amount = 0.3350000159125
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -3.14799976953
+shader_parameter/scan_line_strength = -11.077999956205
+shader_parameter/pixel_strength = -3.4509999739225
 
 [node name="Game" type="Node2D" unique_id=975282636]
 script = ExtResource("1_wfbjd")
@@ -18,11 +36,28 @@ ignore_rotation = false
 zoom = Vector2(4, 4)
 script = ExtResource("5_qs2bn")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="GameCamera" unique_id=649889810]
+follow_viewport_enabled = true
+
+[node name="CRTShader" type="ColorRect" parent="GameCamera/CanvasLayer" unique_id=1761329258]
+material = SubResource("ShaderMaterial_cht7c")
+anchors_preset = -1
+anchor_left = -0.8333333
+anchor_top = -0.7407407
+anchor_right = 0.45
+anchor_bottom = 0.47407407
+offset_left = 408.0
+offset_top = 216.0
+offset_right = 648.0
+offset_bottom = 376.0
+metadata/_edit_use_anchors_ = true
+
 [node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
 position = Vector2(0, 0)
 
-[node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("6_8q0bg")]
-position = Vector2(-96, 0)
+[node name="Enemy" parent="." unique_id=1068328151 instance=ExtResource("5_8q0bg")]
+position = Vector2(-16, 0)
 
+[connection signal="melee_action" from="Player" to="Enemy" method="_on_player_melee_action"]
 [connection signal="movement_action" from="Player" to="GameCamera" method="_on_player_movement_action"]
-[connection signal="stairs_entered" from="StairsDown" to="LevelController" method="_on_stairs_down_stairs_entered"]
+[connection signal="movement_action" from="Player" to="Enemy" method="_on_player_movement_action"]
