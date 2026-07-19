@@ -28,7 +28,7 @@ region_rect = Rect2(448, 0, 16, 16)
 shape = SubResource("RectangleShape2D_praa0")
 
 [node name="HPComponent" parent="." unique_id=136519388 instance=ExtResource("2_6eh6g")]
-max_hp = 3
+max_hp = 4
 
 [node name="HitboxComponent" parent="." unique_id=1099885591 node_paths=PackedStringArray("hp_component") instance=ExtResource("4_praa0")]
 hp_component = NodePath("../HPComponent")

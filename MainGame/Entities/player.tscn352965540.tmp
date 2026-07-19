@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxa8g8iv6o1l6" path="res://MainGame/Entities/EntityComponents/hp_component.tscn" id="3_6xxio"]
 [ext_resource type="PackedScene" uid="uid://cwtsbl4roylsu" path="res://MainGame/Entities/EntityComponents/hurtbox_component.tscn" id="4_a7yko"]
 [ext_resource type="Script" uid="uid://mkm6n165mqf8" path="res://MainGame/Entities/EntityComponents/actions_component.gd" id="7_dq3ll"]
+[ext_resource type="PackedScene" uid="uid://c3l28iu5hnpy3" path="res://MainGame/Entities/EntityComponents/fov_component.tscn" id="8_a7yko"]
 [ext_resource type="PackedScene" uid="uid://dfebhpfa7fkwe" path="res://MainGame/Entities/EntityComponents/hp_bar.tscn" id="9_s40j1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xxio"]
@@ -317,6 +318,8 @@ hit_from_inside = true
 
 [node name="ActionsComponent" type="Node" parent="." unique_id=1554444959]
 script = ExtResource("7_dq3ll")
+
+[node name="FOVComponent" parent="." unique_id=777923660 instance=ExtResource("8_a7yko")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=207710234]
 libraries/ = SubResource("AnimationLibrary_s40j1")

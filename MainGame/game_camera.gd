@@ -1,5 +1,7 @@
 extends Camera2D
 
+const TILE_SIZE_FLOAT: float = 16
+
 @onready var player = $"../Player"
 
 var following_player: bool = true
@@ -24,6 +26,18 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_out"):
 		zoom.x -= 0.5
 		zoom.y -= 0.5
+	
+	if event.is_action_pressed("cam_move_up"):
+		position.y -= TILE_SIZE_FLOAT
+	
+	if event.is_action_pressed("cam_move_down"):
+		position.y += TILE_SIZE_FLOAT
+	
+	if event.is_action_pressed("cam_move_left"):
+		position.x -= TILE_SIZE_FLOAT
+	
+	if event.is_action_pressed("cam_move_right"):
+		position.x += TILE_SIZE_FLOAT
 	 
 	if event.is_action_pressed("camera_follow"):
 		if following_player:

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
-var TILE_SIZE_FLOAT: float = 16
+const TILE_SIZE_FLOAT: float = 16
 
 @export var HPBar: HPBar
 
@@ -11,6 +11,8 @@ var TILE_SIZE_FLOAT: float = 16
 @onready var hp_component: HpComponent = $HPComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+#@onready var fov_component: FOVComponent = $FOVComponent
 
 @onready var up_ray: RayCast2D = $RayCastComponent/UpRayCast2D
 @onready var down_ray: RayCast2D = $RayCastComponent/DownRayCast2D
@@ -101,36 +103,50 @@ func player_input(event: InputEvent) -> void:
 	# Melee actions
 	if event.is_action("move_up") and up_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_up")
+		animation_player.play("melee_up")
 		print("Melee attacked up to hit ", up_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_down") and down_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_down")
+		animation_player.play("melee_down")
 		print("Melee attacked down to hit ", down_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_left") and left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_left")
+		animation_player.play("melee_left")
 		print("Melee attacked left to hit ", left_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_right") and right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_right")
+		animation_player.play("melee_right")
 		print("Melee attacked right to hit ", right_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_upleft") and up_left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_upleft")
+		animation_player.play("melee_upleft")
 		print("Melee attacked up-left to hit ", up_left_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_upright") and up_right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_upright")
+		animation_player.play("melee_upright")
 		print("Melee attacked up-right to hit ", up_right_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_downleft") and down_left_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_downleft")
+		animation_player.play("melee_downleft")
 		print("Melee attacked down-left to hit ", down_left_ray.get_collider())
 		emit_signal("melee_action")
 	if event.is_action("move_downright") and down_right_ray.is_colliding():
 		hurtbox_component.animation_player.play("melee_downright")
+		animation_player.play("melee_downright")
 		print("Melee attacked down-right to hit ", down_right_ray.get_collider())
 		emit_signal("melee_action")
+
+# FOV
+#func _on_movement_action() -> void:
+	#var walls = TileTypes.walls
+	#var player_tile = walls.local_to_map(global_position)
+	#fov_component.update_fov(player_tile)
 
 # hp bar
 func _on_hp_component_hp_changed(current: float, max: float) -> void:

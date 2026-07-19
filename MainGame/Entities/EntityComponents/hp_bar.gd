@@ -15,4 +15,5 @@ func change_value(new_value: float):
 	if change_value_tween:
 		change_value_tween.kill()
 	change_value_tween = create_tween()
-	change_value_tween.tween_property($ProgressBar, "value", new_value, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # yellow damage animation
+	change_value_tween.tween_interval(0.5) # delay before yellow disappears
+	change_value_tween.tween_property($ProgressBar, "value", new_value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # yellow damage animation

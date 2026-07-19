@@ -1,0 +1,48 @@
+v0.012
+- fixed shader blocking mouse input
+- added player sprite animation for melee attacks
+- started work on implementing FOV, although I may not come back to it soon
+
+v0.011
+- level controller is now set up to accept future levels and connecting paths
+- added overall 'CRT' shader
+
+v0.010
+- player can move between the two levels via the stairs
+
+v0.09
+- added LevelController, to load levels
+- added temporary stairs in Firelink, which loads in swamp procgen, but does not yet unload Firelink lol
+
+v0.08
+- added hp bar for the player and enemies
+
+v0.07 
+- recommitted to new Git repository
+- updated Godot version (4.7)
+- created hurtbox component to deal damage, instead of an entity's own hitbox
+
+v0.06 02/07/26
+- player can attack and kill adjacent enemies
+- this is done (currently) by animating the hitbox
+
+v0.05 28/06/26
+- added enemy collision shape
+- figuring out how to do adjacent attacks, rather than entity collisions
+
+v0.04 26/06/26
+- added rudimentary action and fighter system
+- player can deal and take damage and kill an enemy, but there is a lot of work to be done
+
+v0.03 22/06/26
+- added smooth player and camera movement
+- fixed non-movement inputs registering as such
+
+v0.02 22/06/26
+- camera can follow player
+- editing tileset
+
+v0.01 (initial commit) 09/06/26
+- setting things up
+- player can move omnidirectionally
+- camera can be dragged with the mouse and zoomed
