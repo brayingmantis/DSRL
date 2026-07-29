@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cg6ydi5u6xrgx"]
+
+[ext_resource type="Script" uid="uid://bkqwm52ggrdhj" path="res://MainGame/Map/Levels/asylum_procgen.gd" id="1_yywhf"]
+[ext_resource type="TileSet" uid="uid://y0r880hr2jel" path="res://assets/images/tileset.tres" id="2_r5a7t"]
+[ext_resource type="PackedScene" uid="uid://cl5t5xx10kgdi" path="res://MainGame/Entities/stairs_down.tscn" id="4_do1kn"]
+[ext_resource type="PackedScene" uid="uid://c7f2xpklgarqm" path="res://MainGame/Entities/stairs_up.tscn" id="5_ev47o"]
+
+[node name="asylum_procgen" type="Node2D" unique_id=11734514]
+script = ExtResource("1_yywhf")
+
+[node name="TileMapLayer_ground" type="TileMapLayer" parent="." unique_id=1724781922]
+modulate = Color(0.45858866, 0.41072115, 0.33302423, 1)
+tile_set = ExtResource("2_r5a7t")
+
+[node name="TileMapLayer_walls" type="TileMapLayer" parent="." unique_id=1741953307]
+tile_set = ExtResource("2_r5a7t")
+
+[node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("4_do1kn")]
+position = Vector2(-88, -56)
+
+[node name="StairsUp" parent="." unique_id=1169410107 instance=ExtResource("5_ev47o")]
+position = Vector2(8, -40)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1079876879]
+color = Color(0.8164281, 0.7193564, 0.55145234, 1)
+
+[connection signal="stairs_entered" from="StairsDown" to="." method="_on_stairs_down_stairs_entered"]
+[connection signal="stairs_entered" from="StairsUp" to="." method="_on_stairs_up_stairs_entered"]

@@ -9,8 +9,10 @@ class_name swamp
 @onready var tilemap_poison = $TileMapLayer_poison
 
 var noise: Noise
-var width: int = 60
-var height: int = 120
+
+@export_category("Level Dimensions")
+@export var width: int = 60
+@export var height: int = 120
 
 var source_id = 0
 var ground_atlas = Vector2i(7, 0)
@@ -30,11 +32,11 @@ func _on_stairs_up_stairs_entered() -> void:
 
 func _ready() -> void:
 	noise = noise_height_texture.noise
-	generate_world()
+	_generate_level()
 
 	# if stairs up/down signal received, map to the appropriate area
 
-func generate_world():
+func _generate_level():
 	#noise.set_seed(randi_range(0, 1000))
 	noise.set_seed(seed)
 	print("Swamp seed: ", noise.seed)

@@ -38,9 +38,6 @@ tile_set = ExtResource("4_ou3mt")
 light_mask = 2
 tile_set = ExtResource("4_ou3mt")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=651184127]
-color = Color(0.7270226, 0.79672956, 0.86249465, 1)
-
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=64497707]
 position = Vector2(-40, -23)
 color = Color(0.837407, 0.56530726, 0.2392289, 1)
@@ -51,10 +48,13 @@ offset = Vector2(8, 8)
 texture_scale = 2.7
 
 [node name="StairsDown" parent="." unique_id=1925872748 instance=ExtResource("4_i7bhq")]
-position = Vector2(-88, -8)
+position = Vector2(8, -40)
 
 [node name="StairsUp" parent="." unique_id=839518503 instance=ExtResource("5_anujb")]
 position = Vector2(-88, -40)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=651184127]
+color = Color(0.7270226, 0.79672956, 0.86249465, 1)
 
 [connection signal="stairs_entered" from="StairsDown" to="." method="_on_stairs_down_stairs_entered"]
 [connection signal="stairs_entered" from="StairsUp" to="." method="_on_stairs_up_stairs_entered"]

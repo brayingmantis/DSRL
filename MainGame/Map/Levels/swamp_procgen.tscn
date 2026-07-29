@@ -31,7 +31,10 @@ tile_set = ExtResource("2_q1f80")
 position = Vector2(-8, 8)
 
 [node name="StairsUp" parent="." unique_id=1169410107 instance=ExtResource("4_q1f80")]
-position = Vector2(-88, -24)
+position = Vector2(8, -56)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1318665425]
+color = Color(0.78316283, 0.6956019, 0.83340883, 1)
 
 [connection signal="stairs_entered" from="StairsDown" to="." method="_on_stairs_down_stairs_entered"]
 [connection signal="stairs_entered" from="StairsUp" to="." method="_on_stairs_up_stairs_entered"]

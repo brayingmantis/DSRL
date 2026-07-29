@@ -35,13 +35,13 @@ func _ready() -> void:
 	#hp = 10 # called in HPComponent
 
 func player_input(event: InputEvent) -> void:
-	
+
 	if event.is_released():
 		return # don't do anything on key up
-	
+
 	# Movement actions
 	var move_dir := Vector2.ZERO
-	
+
 	if event.is_action("move_up") and !up_ray.is_colliding():
 		move_dir += Vector2.UP
 		global_position += move_dir * TILE_SIZE
@@ -83,7 +83,7 @@ func player_input(event: InputEvent) -> void:
 		global_position += move_dir * TILE_SIZE
 		emit_signal("movement_action")
 		print("Moved down-left")
-	
+
 	# smooth animation (credit Mostly Mad Productions)
 	$PlayerSprite.global_position -= move_dir * TILE_SIZE
 	if sprite_pos_tween:
@@ -91,7 +91,7 @@ func player_input(event: InputEvent) -> void:
 	sprite_pos_tween = create_tween()
 	sprite_pos_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	sprite_pos_tween.tween_property($PlayerSprite, "global_position", global_position, 0.185).set_trans(Tween.TRANS_SINE)
-	
+
 	# Perform actions
 	if event.is_action("heal"): # r key
 		hp_component.heal(1)
@@ -99,48 +99,80 @@ func player_input(event: InputEvent) -> void:
 		hp_component.damage(FighterComponent.new())
 	if event.is_action("Menu"):
 		game_quit()
-	
+
 	# Melee actions
 	if event.is_action("move_up") and up_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_up")
-		animation_player.play("melee_up")
-		print("Melee attacked up to hit ", up_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = up_ray.get_collider()
+		if collider.has_node("HPComponent"): # only attack if they have HP
+			hurtbox_component.animation_player.play("melee_up") # hurtbox damages hitbox
+			animation_player.play("melee_up")
+			print("Melee attacked up to hit ", up_ray.get_collider())
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_down") and down_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_down")
-		animation_player.play("melee_down")
-		print("Melee attacked down to hit ", down_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = down_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_down")
+			animation_player.play("melee_down")
+			print("Melee attacked down to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_left") and left_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_left")
-		animation_player.play("melee_left")
-		print("Melee attacked left to hit ", left_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = left_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_left")
+			animation_player.play("melee_left")
+			print("Melee attacked left to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_right") and right_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_right")
-		animation_player.play("melee_right")
-		print("Melee attacked right to hit ", right_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = right_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_right")
+			animation_player.play("melee_right")
+			print("Melee attacked right to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_upleft") and up_left_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_upleft")
-		animation_player.play("melee_upleft")
-		print("Melee attacked up-left to hit ", up_left_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = up_left_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_upleft")
+			animation_player.play("melee_upleft")
+			print("Melee attacked up-left to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_upright") and up_right_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_upright")
-		animation_player.play("melee_upright")
-		print("Melee attacked up-right to hit ", up_right_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = up_right_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_upright")
+			animation_player.play("melee_upright")
+			print("Melee attacked up-right to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_downleft") and down_left_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_downleft")
-		animation_player.play("melee_downleft")
-		print("Melee attacked down-left to hit ", down_left_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = down_left_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_downleft")
+			animation_player.play("melee_downleft")
+			print("Melee attacked down-left to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 	if event.is_action("move_downright") and down_right_ray.is_colliding():
-		hurtbox_component.animation_player.play("melee_downright")
-		animation_player.play("melee_downright")
-		print("Melee attacked down-right to hit ", down_right_ray.get_collider())
-		emit_signal("melee_action")
+		var collider = down_right_ray.get_collider()
+		if collider.has_node("HPComponent"):
+			hurtbox_component.animation_player.play("melee_downright")
+			animation_player.play("melee_downright")
+			print("Melee attacked down-right to hit ", collider)
+			emit_signal("melee_action")
+		else:
+			print("Cannot move")
 
 # FOV
 #func _on_movement_action() -> void:

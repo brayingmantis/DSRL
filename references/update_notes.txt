@@ -1,4 +1,8 @@
-v0.012
+v0.013 29/07
+- added asylum level with basic procgen, needs to be worked on
+- disallowed melee attacks on non-entities
+
+v0.012 19/07/26
 - fixed shader blocking mouse input
 - added player sprite animation for melee attacks
 - started work on implementing FOV, although I may not come back to it soon
