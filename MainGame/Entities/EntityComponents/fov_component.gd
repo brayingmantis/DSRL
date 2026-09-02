@@ -4,10 +4,10 @@ class_name FOVComponent
 enum TileVisibility { UNSEEN, PREVIOUSLY_SEEN, CURRENTLY_SEEN }
 
 @export var radius: int = 8
-@export var fog_layer: TileMapLayer = TileTypes.fog
-@export var wall_layer: TileMapLayer = TileTypes.walls
-@export var ground_layer: TileMapLayer = TileTypes.ground
-@export var bg_layer: TileMapLayer = TileTypes.bg
+@export var fog_layer: TileMapLayer = LevelRefs.fog
+@export var wall_layer: TileMapLayer = LevelRefs.walls
+@export var ground_layer: TileMapLayer = LevelRefs.ground
+@export var bg_layer: TileMapLayer = LevelRefs.bg
 
 # stores visibility state for every tile that has ever been seen
 var visibility_map: Dictionary = {}  # Vector2i -> TileVisibility
@@ -27,11 +27,11 @@ func _apply_visibility() -> void:
 		var visibility_state = visibility_map[tile]
 		match visibility_state:
 			TileVisibility.UNSEEN:
-				TileTypes.fog.set_cell(tile, 0, Vector2i(12, 20)) # black
+				LevelRefs.fog.set_cell(tile, 0, Vector2i(12, 20)) # black
 			TileVisibility.PREVIOUSLY_SEEN:
-				TileTypes.fog.set_cell(tile, 0, Vector2i(9, 20))  # dark grey
+				LevelRefs.fog.set_cell(tile, 0, Vector2i(9, 20))  # dark grey
 			TileVisibility.CURRENTLY_SEEN:
-				TileTypes.fog.erase_cell(tile) # remove fog
+				LevelRefs.fog.erase_cell(tile) # remove fog
 
 func _set_tile_modulate(tile: Vector2i, color: Color) -> void:
 	# apply to all layers so they stay in sync

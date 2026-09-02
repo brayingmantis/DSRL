@@ -22,16 +22,27 @@ func _load_level(path: String) -> void:
 	var scene = ResourceLoader.load_threaded_get(path)
 	current_level = scene.instantiate()
 	add_child(current_level)
-	#initialise TileMapLayers (for FOV)
-	#TileTypes.walls = current_level.get_node("WallsLayer")
-	#TileTypes.ground = current_level.get_node("GroundLayer")
-	#TileTypes.bg = current_level.get_node("BGLayer")
-	#TileTypes.fog = current_level.get_node("FogLayer")
-	#initialise stair signals
+	# Tiles
+	LevelRefs.walls = current_level.get_node("WallLayer")
+	LevelRefs.ground = current_level.get_node("GroundLayer")
+	LevelRefs.fog = current_level.get_node("FogLayer")
+	# initialise TileMapLayers (for FOV)
+	#LevelRefs.walls = current_level.get_node("WallsLayer")
+	#LevelRefs.ground = current_level.get_node("GroundLayer")
+	#LevelRefs.bg = current_level.get_node("BGLayer")
+	#LevelRefs.fog = current_level.get_node("FogLayer")
+	# spawn enemies after LevelRefs is populated
+	if current_level.has_node("EnemySpawner"):
+		var spawner = current_level.get_node("EnemySpawner")
+		call_deferred("_spawn_after_ready", spawner)
+	# initialise stair signals
 	if current_level.has_signal("stairs_down_entered"):
 		current_level.stairs_down_entered.connect(_on_stairs_down_entered)
 	if current_level.has_signal("stairs_up_entered"):
 		current_level.stairs_up_entered.connect(_on_stairs_up_entered)
+
+func _spawn_after_ready(spawner: Node) -> void:
+	spawner.spawn_enemies(LevelRefs.player, LevelRefs.walls)
 
 func _load_firelink() -> void:
 	_load_level(FIRELINK_SCENE)

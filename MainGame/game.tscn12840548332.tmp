@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bcp6ix43kdb7n" path="res://MainGame/game.gd" id="1_wfbjd"]
 [ext_resource type="Script" uid="uid://ct54uqnnleyjk" path="res://MainGame/level_controller.gd" id="2_wfbjd"]
 [ext_resource type="PackedScene" uid="uid://csjmg0gsemxss" path="res://MainGame/Entities/player.tscn" id="3_ussfm"]
+[ext_resource type="PackedScene" uid="uid://b6sfto6gdkvjj" path="res://MainGame/Entities/enemy.tscn" id="5_8q0bg"]
 [ext_resource type="Script" uid="uid://ca7vsxmie7lb5" path="res://MainGame/game_camera.gd" id="5_qs2bn"]
 [ext_resource type="Shader" uid="uid://6fbxbrer85bs" path="res://assets/shaders/crt_shader.gdshader" id="5_wfbjd"]
 
@@ -55,6 +56,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." unique_id=90838761 instance=ExtResource("3_ussfm")]
 position = Vector2(0, 0)
 
-[node name="Line2D" type="Line2D" parent="." unique_id=1800987999]
+[node name="Enemy" parent="." unique_id=1068328151 node_paths=PackedStringArray("player_node", "visual_path_line2D") instance=ExtResource("5_8q0bg")]
+position = Vector2(-16, 0)
+turns_to_move = null
+player_node = NodePath("../Player")
+visual_path_line2D = NodePath("../Line2D")
 
-[connection signal="player_action" from="Player" to="GameCamera" method="_on_player_player_action"]
+[node name="Line2D" type="Line2D" parent="." unique_id=1800987999]

@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
 			print("Camera unfollowing player")
 		elif not following_player:
 			following_player = true
-			_on_player_movement_action() # move cam to player
+			_on_player_player_action() # move cam to player
 			print("Camera following player")
 
 # hold mouse buttons to drag camera
@@ -55,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			position -= event.relative / zoom
 
 # follow player
-func _on_player_movement_action() -> void:
+func _on_player_player_action() -> void:
 	if following_player:
 		if cam_pos_tween:
 			cam_pos_tween.kill()

@@ -18,7 +18,7 @@ config/icon="uid://bh1u5o1e5q35o"
 [autoload]
 
 InputStack="*uid://bgaqwbb6daqq3"
-TileTypes="*uid://bcnrdiufclc8a"
+LevelRefs="*uid://bcnrdiufclc8a"
 
 [display]
 

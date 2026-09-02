@@ -25,10 +25,10 @@ const TILE_SIZE_FLOAT: float = 16
 
 var sprite_pos_tween: Tween # for smooth animation
 
-signal movement_action
-signal melee_action
+signal player_action
 
 func _ready() -> void:
+	LevelRefs.player = self # init self
 	InputStack.register_input_callback(player_input) # input
 	HPBar._setup_hp_bar(hp_component.hp) # hp bar
 	$PlayerSprite.modulate = Color.WHITE # colour
@@ -45,43 +45,43 @@ func player_input(event: InputEvent) -> void:
 	if event.is_action("move_up") and !up_ray.is_colliding():
 		move_dir += Vector2.UP
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved up")
 	elif event.is_action("move_down") and !down_ray.is_colliding():
 		#hitbox_component.position.y += TILE_SIZE_FLOAT
 		move_dir += Vector2.DOWN
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved down")
 	elif event.is_action("move_left") and !left_ray.is_colliding():
 		move_dir += Vector2.LEFT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved left")
 	elif event.is_action("move_right") and !right_ray.is_colliding():
 		move_dir += Vector2.RIGHT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved right")
 	elif event.is_action("move_upright") and !up_right_ray.is_colliding():
 		move_dir += Vector2.UP + Vector2.RIGHT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved up-right")
 	elif event.is_action("move_upleft") and !up_left_ray.is_colliding():
 		move_dir += Vector2.UP + Vector2.LEFT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved up-left")
 	elif event.is_action("move_downright") and !down_right_ray.is_colliding():
 		move_dir += Vector2.DOWN + Vector2.RIGHT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved down-right")
 	elif event.is_action("move_downleft") and !down_left_ray.is_colliding():
 		move_dir += Vector2.DOWN + Vector2.LEFT
 		global_position += move_dir * TILE_SIZE
-		emit_signal("movement_action")
+		emit_signal("player_action")
 		print("Moved down-left")
 
 	# smooth animation (credit Mostly Mad Productions)
@@ -107,7 +107,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_up") # hurtbox damages hitbox
 			animation_player.play("melee_up")
 			print("Melee attacked up to hit ", up_ray.get_collider())
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_down") and down_ray.is_colliding():
@@ -116,7 +116,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_down")
 			animation_player.play("melee_down")
 			print("Melee attacked down to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_left") and left_ray.is_colliding():
@@ -125,7 +125,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_left")
 			animation_player.play("melee_left")
 			print("Melee attacked left to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_right") and right_ray.is_colliding():
@@ -134,7 +134,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_right")
 			animation_player.play("melee_right")
 			print("Melee attacked right to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_upleft") and up_left_ray.is_colliding():
@@ -143,7 +143,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_upleft")
 			animation_player.play("melee_upleft")
 			print("Melee attacked up-left to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_upright") and up_right_ray.is_colliding():
@@ -152,7 +152,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_upright")
 			animation_player.play("melee_upright")
 			print("Melee attacked up-right to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_downleft") and down_left_ray.is_colliding():
@@ -161,7 +161,7 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_downleft")
 			animation_player.play("melee_downleft")
 			print("Melee attacked down-left to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 	if event.is_action("move_downright") and down_right_ray.is_colliding():
@@ -170,13 +170,13 @@ func player_input(event: InputEvent) -> void:
 			hurtbox_component.animation_player.play("melee_downright")
 			animation_player.play("melee_downright")
 			print("Melee attacked down-right to hit ", collider)
-			emit_signal("melee_action")
+			emit_signal("player_action")
 		else:
 			print("Cannot move")
 
 # FOV
-#func _on_movement_action() -> void:
-	#var walls = TileTypes.walls
+#func _on_player_action() -> void:
+	#var walls = LevelRefs.walls
 	#var player_tile = walls.local_to_map(global_position)
 	#fov_component.update_fov(player_tile)
 
